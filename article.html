@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infobenfica - Artigo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Infobenfica</div>
+</header>
+
+<section class="artigo-container">
+    <h1 id="artigoTitulo"></h1>
+    <p id="artigoTexto"></p>
+</section>
+
+<footer>
+    <p>© 2026 Infobenfica</p>
+</footer>
+
+<script>
+    // Receber dados da notícia via URL
+    const params = new URLSearchParams(window.location.search);
+    const titulo = params.get("titulo");
+    const texto = params.get("texto");
+
+    document.getElementById("artigoTitulo").innerText = titulo;
+    document.getElementById("artigoTexto").innerText = texto;
+</script>
+
+</body>
+</html>
