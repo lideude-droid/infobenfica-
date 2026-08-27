@@ -2,20 +2,22 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f5f5f5;
-    color: #222;
 }
 
 .admin-container {
-    max-width: 500px;
-    margin: 60px auto;
+    max-width: 600px;
+    margin: 40px auto;
     background: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.admin-container h1 {
-    margin-top: 0;
+.hidden {
+    display: none;
+}
+
+h1 {
     color: #e30613;
 }
 
@@ -31,7 +33,6 @@ input, select, textarea {
     margin-top: 5px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    font-size: 14px;
 }
 
 button {
@@ -42,24 +43,29 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 15px;
 }
 
 button:hover {
     background: #c10510;
 }
 
-.hint {
-    margin-top: 15px;
-    font-size: 13px;
-    color: #666;
-}
-
-#statusMsg {
+#listaNoticias {
     margin-top: 20px;
-    font-size: 14px;
 }
 
-.hidden {
-    display: none;
+.noticia-card {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.noticia-card h3 {
+    margin: 0;
+}
+
+.noticia-card button {
+    margin-right: 10px;
+    margin-top: 10px;
 }
