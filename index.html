@@ -11,16 +11,36 @@
     <!-- Header -->
     <header>
         <div class="logo">Infobenfica</div>
-        <nav>
+
+        <!-- Botão hambúrguer -->
+        <div class="hamburger" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Menu desktop -->
+        <nav class="menu-desktop">
             <ul>
-                <li><a href="#">Últimas</a></li>
-                <li><a href="#">Futebol</a></li>
-                <li><a href="#">Modalidades</a></li>
-                <li><a href="#">Clube</a></li>
-                <li><a href="#">Opinião</a></li>
+                <li><a href="#" data-cat="ultimas">Últimas</a></li>
+                <li><a href="#" data-cat="futebol">Futebol</a></li>
+                <li><a href="#" data-cat="modalidades">Modalidades</a></li>
+                <li><a href="#" data-cat="clube">Clube</a></li>
+                <li><a href="#" data-cat="opiniao">Opinião</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Menu mobile lateral -->
+    <aside id="mobileMenu" class="mobile-menu">
+        <ul>
+            <li><a href="#" data-cat="ultimas">Últimas</a></li>
+            <li><a href="#" data-cat="futebol">Futebol</a></li>
+            <li><a href="#" data-cat="modalidades">Modalidades</a></li>
+            <li><a href="#" data-cat="clube">Clube</a></li>
+            <li><a href="#" data-cat="opiniao">Opinião</a></li>
+        </ul>
+    </aside>
 
     <!-- Destaque -->
     <section class="destaque">
@@ -31,36 +51,18 @@
         </div>
     </section>
 
-    <!-- Notícias por categoria -->
-    <section class="noticias">
+    <!-- Notícias -->
+    <section class="noticias" id="noticiasContainer">
         <h2>Últimas Notícias</h2>
-        <div class="grid">
-            <article>
-                <h3>Nova contratação chega ao Seixal</h3>
-                <p>O Benfica reforça o plantel com mais um jovem talento.</p>
-            </article>
-
-            <article>
-                <h3>Modalidades brilham este fim de semana</h3>
-                <p>Vitórias no voleibol, basquetebol e hóquei.</p>
-            </article>
-
-            <article>
-                <h3>Entrevista exclusiva com o treinador</h3>
-                <p>“Estamos focados em melhorar todos os dias.”</p>
-            </article>
-
-            <article>
-                <h3>Clube anuncia novas melhorias no estádio</h3>
-                <p>Modernização continua para melhorar a experiência dos adeptos.</p>
-            </article>
+        <div class="grid" id="newsGrid">
+            <!-- Notícias serão carregadas dinamicamente -->
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>© 2026 Infobenfica — Site de notícias sobre o SL Benfica</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
