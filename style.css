@@ -96,3 +96,99 @@ footer {
     padding: 15px;
     margin-top: 30px;
 }
+
+/* ============================= */
+/* 📱 RESPONSIVIDADE */
+/* ============================= */
+
+/* Telemóveis pequenos */
+@media (max-width: 480px) {
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .destaque {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .destaque img {
+        margin: 0 0 15px 0;
+        width: 120px;
+    }
+
+    .destaque-texto h1 {
+        font-size: 22px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Telemóveis médios / Tablets pequenos */
+@media (max-width: 768px) {
+
+    header .logo {
+        font-size: 24px;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+
+    .destaque {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .destaque img {
+        width: 130px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Tablets grandes / Laptops pequenos */
+@media (max-width: 1024px) {
+
+    .destaque-texto h1 {
+        font-size: 24px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+/* Televisões (ecrãs muito grandes) */
+@media (min-width: 1600px) {
+
+    body {
+        font-size: 20px;
+    }
+
+    header {
+        padding: 25px 60px;
+    }
+
+    .destaque {
+        padding: 50px;
+        margin: 40px;
+    }
+
+    .destaque img {
+        width: 200px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
