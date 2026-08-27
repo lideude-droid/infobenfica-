@@ -17,22 +17,25 @@ document.querySelectorAll(".menu-desktop a").forEach(link => {
     link.addEventListener("click", () => carregarNoticias(link.dataset.cat));
 });
 
-// NOTÍCIAS (agora com imagem)
+// NOTÍCIAS FALSAS (por agora)
 let noticiasFake = {
-    ultimas: [],
+    ultimas: [
+        {
+            titulo: "Benfica treina no Seixal",
+            texto: "Preparação para o próximo jogo.",
+            imagem: "https://source.unsplash.com/random/800x600?football"
+        },
+        {
+            titulo: "Nova contratação a caminho",
+            texto: "Jogador chega esta semana.",
+            imagem: "https://source.unsplash.com/random/800x600?player"
+        }
+    ],
     futebol: [],
     modalidades: [],
     clube: [],
     opiniao: []
 };
-
-// RECEBER NOTÍCIAS DO ADMIN
-window.addEventListener("message", (event) => {
-    if (event.data.tipo === "novaNoticia") {
-        noticiasFake[event.data.categoria].push(event.data);
-        carregarNoticias(event.data.categoria);
-    }
-});
 
 // CARREGAR NOTÍCIAS
 function carregarNoticias(categoria = "ultimas") {
@@ -61,4 +64,5 @@ function carregarNoticias(categoria = "ultimas") {
     });
 }
 
+// CARREGAR INICIAL
 carregarNoticias("ultimas");
