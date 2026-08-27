@@ -8,31 +8,14 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">Infobenfica</div>
+<header>
+    <div class="logo">Infobenfica</div>
 
-        <!-- Botão hambúrguer -->
-        <div class="hamburger" id="hamburgerBtn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    <div class="hamburger" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+    </div>
 
-        <!-- Menu desktop -->
-        <nav class="menu-desktop">
-            <ul>
-                <li><a href="#" data-cat="ultimas">Últimas</a></li>
-                <li><a href="#" data-cat="futebol">Futebol</a></li>
-                <li><a href="#" data-cat="modalidades">Modalidades</a></li>
-                <li><a href="#" data-cat="clube">Clube</a></li>
-                <li><a href="#" data-cat="opiniao">Opinião</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Menu mobile lateral -->
-    <aside id="mobileMenu" class="mobile-menu">
+    <nav class="menu-desktop">
         <ul>
             <li><a href="#" data-cat="ultimas">Últimas</a></li>
             <li><a href="#" data-cat="futebol">Futebol</a></li>
@@ -40,29 +23,28 @@
             <li><a href="#" data-cat="clube">Clube</a></li>
             <li><a href="#" data-cat="opiniao">Opinião</a></li>
         </ul>
-    </aside>
+    </nav>
+</header>
 
-    <!-- Destaque -->
-    <section class="destaque">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/SL_Benfica_logo.svg" alt="Benfica">
-        <div class="destaque-texto">
-            <h1>Benfica vence e mantém liderança da Liga</h1>
-            <p>As águias dominaram o encontro e garantiram mais três pontos importantes.</p>
-        </div>
-    </section>
+<aside id="mobileMenu" class="mobile-menu">
+    <ul>
+        <li><a href="#" data-cat="ultimas">Últimas</a></li>
+        <li><a href="#" data-cat="futebol">Futebol</a></li>
+        <li><a href="#" data-cat="modalidades">Modalidades</a></li>
+        <li><a href="#" data-cat="clube">Clube</a></li>
+        <li><a href="#" data-cat="opiniao">Opinião</a></li>
+    </ul>
+</aside>
 
-    <!-- Notícias -->
-    <section class="noticias" id="noticiasContainer">
-        <h2 id="tituloCategoria">Últimas Notícias</h2>
-        <div class="grid" id="newsGrid">
-            <!-- Notícias serão carregadas dinamicamente -->
-        </div>
-    </section>
+<section class="noticias">
+    <h2 id="tituloCategoria">Últimas Notícias</h2>
+    <div class="grid" id="newsGrid"></div>
+</section>
 
-    <footer>
-        <p>© 2026 Infobenfica — Site de notícias sobre o SL Benfica</p>
-    </footer>
+<footer>
+    <p>© 2026 Infobenfica</p>
+</footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
