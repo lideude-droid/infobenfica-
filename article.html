@@ -13,21 +13,17 @@
 </header>
 
 <section class="artigo-container">
+    <img id="artigoImagem" class="noticia-img">
     <h1 id="artigoTitulo"></h1>
     <p id="artigoTexto"></p>
 </section>
 
-<footer>
-    <p>© 2026 Infobenfica — Site de notícias sobre o SL Benfica</p>
-</footer>
-
 <script>
     const params = new URLSearchParams(window.location.search);
-    const titulo = params.get("titulo");
-    const texto = params.get("texto");
 
-    document.getElementById("artigoTitulo").innerText = titulo || "Artigo";
-    document.getElementById("artigoTexto").innerText = texto || "Não foi possível carregar o texto deste artigo.";
+    document.getElementById("artigoTitulo").innerText = params.get("titulo");
+    document.getElementById("artigoTexto").innerText = params.get("texto");
+    document.getElementById("artigoImagem").src = params.get("imagem");
 </script>
 
 </body>
