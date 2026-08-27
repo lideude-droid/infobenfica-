@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infobenfica - Área Reservada</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="admin-container" id="loginArea">
+    <h1>Área Reservada Infobenfica</h1>
+    <p>Autorizados apenas</p>
+
+    <form id="loginForm">
+        <label for="user">Utilizador</label>
+        <input type="text" id="user" required>
+
+        <label for="pass">Password</label>
+        <input type="password" id="pass" required>
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    <p class="hint">*(por agora, usa utilizador: <strong>admin</strong> e password: <strong>benfica</strong>)*</p>
+</div>
+
+<div class="admin-container hidden" id="newsArea">
+    <h1>Criar Nova Notícia</h1>
+
+    <form id="newsForm">
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" required>
+
+        <label for="categoria">Categoria</label>
+        <select id="categoria" required>
+            <option value="ultimas">Últimas</option>
+            <option value="futebol">Futebol</option>
+            <option value="modalidades">Modalidades</option>
+            <option value="clube">Clube</option>
+            <option value="opiniao">Opinião</option>
+        </select>
+
+        <label for="texto">Texto da notícia</label>
+        <textarea id="texto" rows="6" required></textarea>
+
+        <button type="submit">Guardar notícia</button>
+    </form>
+
+    <div id="statusMsg"></div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
