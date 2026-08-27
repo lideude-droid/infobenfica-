@@ -1,16 +1,20 @@
+/* ======== BASE ======== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f5f5f5;
+    background: #f2f2f2;
+    min-height: 100vh;
 }
 
+/* Containers principais */
 .admin-container {
-    max-width: 600px;
+    width: 90%;
+    max-width: 1400px;
     margin: 40px auto;
     background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
 .hidden {
@@ -19,8 +23,10 @@ body {
 
 h1 {
     color: #e30613;
+    margin-top: 0;
 }
 
+/* ======== FORMULÁRIOS ======== */
 label {
     display: block;
     margin-top: 15px;
@@ -29,43 +35,95 @@ label {
 
 input, select, textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-top: 5px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #ccc;
+    font-size: 15px;
 }
 
 button {
     margin-top: 20px;
-    padding: 10px 18px;
+    padding: 12px 20px;
     background: #e30613;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 button:hover {
     background: #c10510;
 }
 
-#listaNoticias {
-    margin-top: 20px;
+/* ======== DASHBOARD ======== */
+#dashboardArea {
+    min-height: 80vh;
 }
 
+/* Botão criar notícia */
+#btnCriar {
+    background: #0077ff;
+    margin-bottom: 20px;
+}
+
+#btnCriar:hover {
+    background: #005fcc;
+}
+
+/* Lista de notícias */
+#listaNoticias {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 25px;
+}
+
+/* Cartões de notícia */
 .noticia-card {
     background: #fafafa;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    padding: 25px;
+    border-radius: 12px;
     border: 1px solid #ddd;
+    transition: 0.3s;
+}
+
+.noticia-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
 }
 
 .noticia-card h3 {
-    margin: 0;
+    margin-top: 0;
+    font-size: 22px;
 }
 
+.noticia-card p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+/* Botões dentro dos cards */
 .noticia-card button {
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+/* ======== RESPONSIVO ======== */
+@media (max-width: 768px) {
+    .admin-container {
+        width: 95%;
+        padding: 25px;
+    }
+
+    #listaNoticias {
+        grid-template-columns: 1fr;
+    }
+
+    .noticia-card {
+        padding: 20px;
+    }
 }
