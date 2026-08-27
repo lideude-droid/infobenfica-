@@ -18,17 +18,16 @@
 </section>
 
 <footer>
-    <p>© 2026 Infobenfica</p>
+    <p>© 2026 Infobenfica — Site de notícias sobre o SL Benfica</p>
 </footer>
 
 <script>
-    // Receber dados da notícia via URL
     const params = new URLSearchParams(window.location.search);
     const titulo = params.get("titulo");
     const texto = params.get("texto");
 
-    document.getElementById("artigoTitulo").innerText = titulo;
-    document.getElementById("artigoTexto").innerText = texto;
+    document.getElementById("artigoTitulo").innerText = titulo || "Artigo";
+    document.getElementById("artigoTexto").innerText = texto || "Não foi possível carregar o texto deste artigo.";
 </script>
 
 </body>
