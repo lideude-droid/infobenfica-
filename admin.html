@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infobenfica - Área Reservada</title>
+    <title>Infobenfica - Administração</title>
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
 <div class="admin-container" id="loginArea">
     <h1>Área Reservada Infobenfica</h1>
-    <p>Autorizados apenas</p>
+    <p>Acesso restrito</p>
 
     <form id="loginForm">
         <label for="user">Utilizador</label>
@@ -22,18 +22,29 @@
         <button type="submit">Entrar</button>
     </form>
 
-    <p class="hint">*(por agora, usa utilizador: <strong>admin</strong> e password: <strong>benfica</strong>)*</p>
+    <p class="hint">Utilizador: <strong>admin</strong> | Password: <strong>benfica</strong></p>
 </div>
 
-<div class="admin-container hidden" id="newsArea">
-    <h1>Criar Nova Notícia</h1>
+<!-- DASHBOARD -->
+<div class="admin-container hidden" id="dashboardArea">
+    <h1>Dashboard de Notícias</h1>
 
-    <form id="newsForm">
-        <label for="titulo">Título</label>
-        <input type="text" id="titulo" required>
+    <button id="btnCriar">Criar Nova Notícia</button>
 
-        <label for="categoria">Categoria</label>
-        <select id="categoria" required>
+    <h2>Notícias Criadas</h2>
+    <div id="listaNoticias"></div>
+</div>
+
+<!-- FORMULÁRIO DE CRIAÇÃO -->
+<div class="admin-container hidden" id="criarArea">
+    <h1>Criar Notícia</h1>
+
+    <form id="criarForm">
+        <label for="tituloCriar">Título</label>
+        <input type="text" id="tituloCriar" required>
+
+        <label for="categoriaCriar">Categoria</label>
+        <select id="categoriaCriar" required>
             <option value="ultimas">Últimas</option>
             <option value="futebol">Futebol</option>
             <option value="modalidades">Modalidades</option>
@@ -41,13 +52,39 @@
             <option value="opiniao">Opinião</option>
         </select>
 
-        <label for="texto">Texto da notícia</label>
-        <textarea id="texto" rows="6" required></textarea>
+        <label for="textoCriar">Texto</label>
+        <textarea id="textoCriar" rows="6" required></textarea>
 
-        <button type="submit">Guardar notícia</button>
+        <button type="submit">Guardar</button>
+        <button type="button" id="cancelCriar">Cancelar</button>
     </form>
+</div>
 
-    <div id="statusMsg"></div>
+<!-- FORMULÁRIO DE EDIÇÃO -->
+<div class="admin-container hidden" id="editarArea">
+    <h1>Editar Notícia</h1>
+
+    <form id="editarForm">
+        <input type="hidden" id="editarId">
+
+        <label for="tituloEditar">Título</label>
+        <input type="text" id="tituloEditar" required>
+
+        <label for="categoriaEditar">Categoria</label>
+        <select id="categoriaEditar" required>
+            <option value="ultimas">Últimas</option>
+            <option value="futebol">Futebol</option>
+            <option value="modalidades">Modalidades</option>
+            <option value="clube">Clube</option>
+            <option value="opiniao">Opinião</option>
+        </select>
+
+        <label for="textoEditar">Texto</label>
+        <textarea id="textoEditar" rows="6" required></textarea>
+
+        <button type="submit">Guardar Alterações</button>
+        <button type="button" id="cancelEditar">Cancelar</button>
+    </form>
 </div>
 
 <script src="admin.js"></script>
