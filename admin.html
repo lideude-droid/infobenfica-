@@ -12,18 +12,18 @@
     <h1>Login Admin</h1>
     <form id="loginForm">
         <label>Utilizador</label>
-        <input id="user">
+        <input id="user" type="text" required>
 
         <label>Password</label>
-        <input id="pass" type="password">
+        <input id="pass" type="password" required>
 
-        <button>Entrar</button>
+        <button type="submit">Entrar</button>
     </form>
 </div>
 
 <div class="admin-container hidden" id="dashboardArea">
     <h1>Dashboard</h1>
-    <button id="btnCriar">Criar Notícia</button>
+    <button id="btnCriar" type="button">Criar Notícia</button>
     <div id="listaNoticias"></div>
 </div>
 
@@ -32,7 +32,7 @@
     <form id="criarForm">
 
         <label>Título</label>
-        <input id="tituloCriar">
+        <input id="tituloCriar" required>
 
         <label>Categoria</label>
         <select id="categoriaCriar">
@@ -44,12 +44,12 @@
         </select>
 
         <label>Texto</label>
-        <textarea id="textoCriar"></textarea>
+        <textarea id="textoCriar" required></textarea>
 
         <label>Imagem (URL)</label>
         <input id="imagemCriar" placeholder="https://...">
 
-        <button>Guardar</button>
+        <button type="submit">Guardar</button>
         <button type="button" id="cancelCriar">Cancelar</button>
     </form>
 </div>
