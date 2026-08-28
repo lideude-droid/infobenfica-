@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Infobenfica</title>
     <link rel="stylesheet" href="admin.css">
-    <!-- Supabase SDK e Configuração -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase.js"></script>
 </head>
 <body>
 
@@ -33,7 +30,6 @@
 <div class="admin-container hidden" id="criarArea">
     <h1>Criar Notícia</h1>
     <form id="criarForm">
-
         <label>Título</label>
         <input id="tituloCriar" required>
 
@@ -60,6 +56,6 @@
     </form>
 </div>
 
-<script src="admin.js"></script>
+<script type="module" src="admin.js"></script>
 </body>
 </html>
