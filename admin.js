@@ -30,40 +30,53 @@ document.getElementById("cancelCriar").onclick = () => {
     dashboardArea.classList.remove("hidden");
 };
 
-document.getElementById("criarForm").addEventListener("submit", (e) => {
+document.getElementById("criarForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const novaNoticia = {
-        id: Date.now(),
         titulo: document.getElementById("tituloCriar").value,
+        subtitulo: document.getElementById("subtituloCriar") ? document.getElementById("subtituloCriar").value : "",
         categoria: document.getElementById("categoriaCriar").value,
         texto: document.getElementById("textoCriar").value,
         imagem: document.getElementById("imagemCriar").value || "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800"
     };
 
-    // Buscar notícias guardadas ou iniciar array vazio
-    let noticias = JSON.parse(localStorage.getItem("infobenfica_noticias")) || [];
-    noticias.unshift(novaNoticia); // Adiciona no início
-    localStorage.setItem("infobenfica_noticias", JSON.stringify(noticias));
+    const { error } = await supabase.from("noticias").insert([novaNoticia]);
 
-    // Limpar formulário e voltar ao dashboard
+    if (error) {
+        console.error("Erro ao guardar notícia:", error);
+        alert("Erro ao guardar a notícia na base de dados.");
+        return;
+    }
+
+    alert("Notícia criada com sucesso!");
     document.getElementById("criarForm").reset();
     criarArea.classList.add("hidden");
     dashboardArea.classList.remove("hidden");
     carregarNoticiasAdmin();
 });
 
-// LISTAR NOTÍCIAS NO ADMIN (com opção de apagar)
-function carregarNoticiasAdmin() {
+// LISTAR NOTÍCIAS NO ADMIN
+async function carregarNoticiasAdmin() {
     const listaNoticias = document.getElementById("listaNoticias");
-    listaNoticias.innerHTML = "";
+    listaNoticias.innerHTML = "<p>A carregar...</p>";
 
-    let noticias = JSON.parse(localStorage.getItem("infobenfica_noticias")) || [];
+    const { data: noticias, error } = await supabase
+        .from("noticias")
+        .select("*")
+        .order("data_criacao", { ascending: false });
 
-    if (noticias.length === 0) {
+    if (error) {
+        listaNoticias.innerHTML = "<p>Erro ao carregar notícias.</p>";
+        return;
+    }
+
+    if (!noticias || noticias.length === 0) {
         listaNoticias.innerHTML = "<p>Sem notícias criadas.</p>";
         return;
     }
+
+    listaNoticias.innerHTML = "";
 
     noticias.forEach(noticia => {
         const card = document.createElement("div");
@@ -72,16 +85,23 @@ function carregarNoticiasAdmin() {
             <h3>${noticia.titulo}</h3>
             <p><b>Categoria:</b> ${noticia.categoria}</p>
             <p>${noticia.texto.substring(0, 80)}...</p>
-            <button onclick="apagarNoticia(${noticia.id})" style="background: #cc0000;">Apagar</button>
+            <button onclick="apagarNoticia(${noticia.id})" style="background: #cc0000; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer;">Apagar</button>
         `;
         listaNoticias.appendChild(card);
     });
 }
 
 // APAGAR NOTÍCIA
-window.apagarNoticia = function(id) {
-    let noticias = JSON.parse(localStorage.getItem("infobenfica_noticias")) || [];
-    noticias = noticias.filter(n => n.id !== id);
-    localStorage.setItem("infobenfica_noticias", JSON.stringify(noticias));
+window.apagarNoticia = async function(id) {
+    if (!confirm("Tens a certeza que pretendes apagar esta notícia?")) return;
+
+    const { error } = await supabase.from("noticias").delete().eq("id", id);
+
+    if (error) {
+        alert("Erro ao apagar a notícia.");
+        console.error(error);
+        return;
+    }
+
     carregarNoticiasAdmin();
 };
