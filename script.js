@@ -14,28 +14,34 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
 });
 
 document.querySelectorAll(".menu-desktop a").forEach(link => {
-    link.addEventListener("click", () => carregarNoticias(link.dataset.cat));
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        carregarNoticias(link.dataset.cat);
+    });
 });
 
-// NOTÍCIAS FALSAS (por agora)
-let noticiasFake = {
-    ultimas: [
-        {
-            titulo: "Benfica treina no Seixal",
-            texto: "Preparação para o próximo jogo.",
-            imagem: "https://source.unsplash.com/random/800x600?football"
-        },
-        {
-            titulo: "Nova contratação a caminho",
-            texto: "Jogador chega esta semana.",
-            imagem: "https://source.unsplash.com/random/800x600?player"
-        }
-    ],
-    futebol: [],
-    modalidades: [],
-    clube: [],
-    opiniao: []
-};
+// NOTÍCIAS INICIAIS (Caso o localStorage esteja vazio)
+const noticiasIniciaisDefault = [
+    {
+        id: 1,
+        titulo: "Benfica treina no Seixal",
+        categoria: "ultimas",
+        texto: "Preparação intensa para o próximo jogo do campeonato.",
+        imagem: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800"
+    },
+    {
+        id: 2,
+        titulo: "Vitória importante nas modalidades",
+        categoria: "modalidades",
+        texto: "Equipa de rinque-hocque/futsal conquista triunfo fora de portas.",
+        imagem: "https://images.unsplash.com/photo-1517649763962-0c6232660102?w=800"
+    }
+];
+
+// Inicializar localStorage se estiver vazio
+if (!localStorage.getItem("infobenfica_noticias")) {
+    localStorage.setItem("infobenfica_noticias", JSON.stringify(noticiasIniciaisDefault));
+}
 
 // CARREGAR NOTÍCIAS
 function carregarNoticias(categoria = "ultimas") {
@@ -43,21 +49,31 @@ function carregarNoticias(categoria = "ultimas") {
     const tituloCategoria = document.getElementById("tituloCategoria");
 
     tituloCategoria.innerText = categoria.charAt(0).toUpperCase() + categoria.slice(1);
-
     newsGrid.innerHTML = "";
 
-    noticiasFake[categoria].forEach(noticia => {
+    const todasNoticias = JSON.parse(localStorage.getItem("infobenfica_noticias")) || [];
+    
+    // Filtrar por categoria (se escolher 'ultimas', mostra todas ou as marcadas como ultimas)
+    const filtradas = categoria === "ultimas" 
+        ? todasNoticias 
+        : todasNoticias.filter(n => n.categoria === categoria);
+
+    if (filtradas.length === 0) {
+        newsGrid.innerHTML = "<p>Não existem notícias nesta categoria.</p>";
+        return;
+    }
+
+    filtradas.forEach(noticia => {
         const card = document.createElement("article");
 
         card.innerHTML = `
-            <img src="${noticia.imagem}" class="noticia-img">
+            <img src="${noticia.imagem}" class="noticia-img" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800'">
             <h3>${noticia.titulo}</h3>
             <p>${noticia.texto}</p>
         `;
 
         card.addEventListener("click", () => {
-            window.location.href =
-                `article.html?titulo=${encodeURIComponent(noticia.titulo)}&texto=${encodeURIComponent(noticia.texto)}&imagem=${encodeURIComponent(noticia.imagem)}`;
+            window.location.href = `article.html?titulo=${encodeURIComponent(noticia.titulo)}&texto=${encodeURIComponent(noticia.texto)}&imagem=${encodeURIComponent(noticia.imagem)}`;
         });
 
         newsGrid.appendChild(card);
