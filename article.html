@@ -9,21 +9,30 @@
 <body>
 
 <header>
-    <div class="logo">Infobenfica</div>
+    <div class="logo"><a href="index.html" style="color: white; text-decoration: none;">Infobenfica</a></div>
 </header>
 
-<section class="artigo-container">
-    <img id="artigoImagem" class="noticia-img">
-    <h1 id="artigoTitulo"></h1>
-    <p id="artigoTexto"></p>
+<section class="artigo-container" style="padding: 30px; max-width: 800px; margin: 0 auto;">
+    <img id="artigoImagem" class="noticia-img" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px;">
+    <h1 id="artigoTitulo" style="margin-top: 20px;"></h1>
+    <h3 id="artigoSubtitulo" style="color: #555; font-weight: normal; margin-top: 5px;"></h3>
+    <hr style="border: 0; border-top: 1px solid #ddd; margin: 20px 0;">
+    <p id="artigoTexto" style="line-height: 1.6; font-size: 16px;"></p>
 </section>
 
 <script>
     const params = new URLSearchParams(window.location.search);
 
-    document.getElementById("artigoTitulo").innerText = params.get("titulo");
-    document.getElementById("artigoTexto").innerText = params.get("texto");
-    document.getElementById("artigoImagem").src = params.get("imagem");
+    document.getElementById("artigoTitulo").innerText = params.get("titulo") || "";
+    document.getElementById("artigoSubtitulo").innerText = params.get("subtitulo") || "";
+    document.getElementById("artigoTexto").innerText = params.get("texto") || "";
+    
+    const imgUrl = params.get("imagem");
+    if (imgUrl) {
+        document.getElementById("artigoImagem").src = imgUrl;
+    } else {
+        document.getElementById("artigoImagem").style.display = "none";
+    }
 </script>
 
 </body>
