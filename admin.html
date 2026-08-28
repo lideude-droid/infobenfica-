@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,55 +7,61 @@
     <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+<main class="admin-container">
+    <section id="loginArea">
+        <h1>Login Admin</h1>
+        <form id="loginForm">
+            <label for="email">Email</label>
+            <input id="email" type="email" autocomplete="username" required>
 
-<div class="admin-container" id="loginArea">
-    <h1>Login Admin</h1>
-    <form id="loginForm">
-        <label>Utilizador</label>
-        <input id="user" type="text" required>
+            <label for="pass">Password</label>
+            <input id="pass" type="password" autocomplete="current-password" required>
 
-        <label>Password</label>
-        <input id="pass" type="password" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="loginError" class="error" aria-live="polite"></p>
+    </section>
 
-        <button type="submit">Entrar</button>
-    </form>
-</div>
+    <section id="dashboardArea" class="hidden">
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <button id="logoutBtn" type="button">Sair</button>
+        </div>
+        <button id="btnCriar" type="button">Criar Notícia</button>
+        <div id="listaNoticias"></div>
+    </section>
 
-<div class="admin-container hidden" id="dashboardArea">
-    <h1>Dashboard</h1>
-    <button id="btnCriar" type="button">Criar Notícia</button>
-    <div id="listaNoticias"></div>
-</div>
+    <section id="criarArea" class="hidden">
+        <h1 id="formTitulo">Criar Notícia</h1>
+        <form id="criarForm">
+            <label for="tituloCriar">Título</label>
+            <input id="tituloCriar" maxlength="200" required>
 
-<div class="admin-container hidden" id="criarArea">
-    <h1>Criar Notícia</h1>
-    <form id="criarForm">
-        <label>Título</label>
-        <input id="tituloCriar" required>
+            <label for="subtituloCriar">Subtítulo</label>
+            <input id="subtituloCriar" maxlength="300">
 
-        <label>Subtítulo</label>
-        <input id="subtituloCriar">
+            <label for="categoriaCriar">Categoria</label>
+            <select id="categoriaCriar" required>
+                <option value="futebol">Futebol</option>
+                <option value="modalidades">Modalidades</option>
+                <option value="clube">Clube</option>
+                <option value="opiniao">Opinião</option>
+            </select>
 
-        <label>Categoria</label>
-        <select id="categoriaCriar">
-            <option value="ultimas">Últimas</option>
-            <option value="futebol">Futebol</option>
-            <option value="modalidades">Modalidades</option>
-            <option value="clube">Clube</option>
-            <option value="opiniao">Opinião</option>
-        </select>
+            <label for="textoCriar">Texto</label>
+            <textarea id="textoCriar" rows="12" required></textarea>
 
-        <label>Texto</label>
-        <textarea id="textoCriar" required></textarea>
+            <label for="imagemCriar">Imagem (URL)</label>
+            <input id="imagemCriar" type="url" placeholder="https://...">
 
-        <label>Imagem (URL)</label>
-        <input id="imagemCriar" placeholder="https://...">
-
-        <button type="submit">Guardar</button>
-        <button type="button" id="cancelCriar">Cancelar</button>
-    </form>
-</div>
-
+            <div class="form-actions">
+                <button type="submit">Guardar</button>
+                <button type="button" id="cancelCriar">Cancelar</button>
+            </div>
+            <p id="formError" class="error" aria-live="polite"></p>
+        </form>
+    </section>
+</main>
 <script type="module" src="admin.js"></script>
 </body>
 </html>

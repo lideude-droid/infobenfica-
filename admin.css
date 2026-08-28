@@ -1,12 +1,10 @@
-/* ======== BASE ======== */
+* { box-sizing: border-box; }
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f2f2f2;
     min-height: 100vh;
 }
-
-/* Containers principais */
 .admin-container {
     width: 90%;
     max-width: 1400px;
@@ -14,25 +12,11 @@ body {
     background: white;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    box-shadow: 0 0 15px rgba(0,0,0,.1);
 }
-
-.hidden {
-    display: none;
-}
-
-h1 {
-    color: #e30613;
-    margin-top: 0;
-}
-
-/* ======== FORMULÁRIOS ======== */
-label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-}
-
+.hidden { display: none !important; }
+h1 { color: #e30613; margin-top: 0; }
+label { display: block; margin-top: 15px; font-weight: bold; }
 input, select, textarea {
     width: 100%;
     padding: 12px;
@@ -41,89 +25,44 @@ input, select, textarea {
     border: 1px solid #ccc;
     font-size: 15px;
 }
-
 button {
     margin-top: 20px;
     padding: 12px 20px;
     background: #e30613;
     color: white;
-    border: none;
+    border: 0;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
 }
-
-button:hover {
-    background: #c10510;
+button:hover { background: #c10510; }
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
-/* ======== DASHBOARD ======== */
-#dashboardArea {
-    min-height: 80vh;
-}
-
-/* Botão criar notícia */
-#btnCriar {
-    background: #0077ff;
-    margin-bottom: 20px;
-}
-
-#btnCriar:hover {
-    background: #005fcc;
-}
-
-/* Lista de notícias */
+.dashboard-header button { margin-top: 0; }
+#btnCriar { background: #0077ff; margin-bottom: 20px; }
+#btnCriar:hover { background: #005fcc; }
 #listaNoticias {
-    margin-top: 30px;
+    margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
-
-/* Cartões de notícia */
 .noticia-card {
     background: #fafafa;
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
     border: 1px solid #ddd;
-    transition: 0.3s;
 }
-
-.noticia-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 12px rgba(0,0,0,0.1);
-}
-
-.noticia-card h3 {
-    margin-top: 0;
-    font-size: 22px;
-}
-
-.noticia-card p {
-    margin: 8px 0;
-    font-size: 15px;
-}
-
-/* Botões dentro dos cards */
-.noticia-card button {
-    margin-right: 10px;
-    margin-top: 15px;
-    padding: 10px 16px;
-    font-size: 14px;
-}
-
-/* ======== RESPONSIVO ======== */
+.noticia-card h2 { margin-top: 0; font-size: 20px; }
+.noticia-card p { color: #666; }
+.noticia-card a { color: #e30613; font-weight: bold; }
+.form-actions { display: flex; gap: 10px; }
+.form-actions button[type="button"] { background: #666; }
+.error { color: #b00020; min-height: 1.2em; }
 @media (max-width: 768px) {
-    .admin-container {
-        width: 95%;
-        padding: 25px;
-    }
-
-    #listaNoticias {
-        grid-template-columns: 1fr;
-    }
-
-    .noticia-card {
-        padding: 20px;
-    }
+    .admin-container { width: 95%; padding: 25px; margin: 20px auto; }
+    .dashboard-header { align-items: flex-start; }
 }
