@@ -1,71 +1,51 @@
-// MENU MOBILE
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const mobileMenu = document.getElementById("mobileMenu");
+import { supabase } from './supabase.js';
 
-hamburgerBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("open");
-});
+document.addEventListener("DOMContentLoaded", async () => {
+    await carregarNoticias('ultimas');
 
-document.querySelectorAll(".mobile-menu a").forEach(link => {
-    link.addEventListener("click", () => {
-        mobileMenu.classList.remove("open");
-        carregarNoticias(link.dataset.cat);
+    // Cliques nas categorias do menu
+    document.querySelectorAll('nav a, aside a').forEach(link => {
+        link.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const cat = e.target.getAttribute('data-cat');
+            document.getElementById('tituloCategoria').innerText = e.target.innerText;
+            await carregarNoticias(cat);
+        });
     });
 });
 
-document.querySelectorAll(".menu-desktop a").forEach(link => {
-    link.addEventListener("click", (e) => {
-        e.preventDefault();
-        carregarNoticias(link.dataset.cat);
-    });
-});
+async function carregarNoticias(categoria) {
+    const newsGrid = document.getElementById('newsGrid');
+    newsGrid.innerHTML = '<p>A carregar notícias...</p>';
 
-// CARREGAR NOTÍCIAS DO SUPABASE
-async function carregarNoticias(categoria = "ultimas") {
-    const newsGrid = document.getElementById("newsGrid");
-    const tituloCategoria = document.getElementById("tituloCategoria");
-
-    tituloCategoria.innerText = categoria.charAt(0).toUpperCase() + categoria.slice(1);
-    newsGrid.innerHTML = "<p>A carregar notícias...</p>";
-
-    let query = supabase.from("noticias").select("*").order("data_criacao", { ascending: false });
-
-    if (categoria !== "ultimas") {
-        query = query.eq("categoria", categoria);
-    }
-
-    const { data: noticias, error } = await query;
+    // Certifica-te que a tabela no Supabase se chama 'noticias'
+    const { data, error } = await supabase
+        .from('noticias')
+        .select('*')
+        .eq('categoria', categoria)
+        .order('created_at', { ascending: false });
 
     if (error) {
-        console.error("Erro ao carregar notícias:", error);
-        newsGrid.innerHTML = "<p>Erro ao carregar as notícias da base de dados.</p>";
+        console.error('Erro ao comunicar com o Supabase:', error);
+        newsGrid.innerHTML = '<p>Erro ao carregar notícias.</p>';
         return;
     }
 
-    newsGrid.innerHTML = "";
-
-    if (!noticias || noticias.length === 0) {
-        newsGrid.innerHTML = "<p>Não existem notícias nesta categoria.</p>";
+    newsGrid.innerHTML = '';
+    if (!data || data.length === 0) {
+        newsGrid.innerHTML = '<p>Sem notícias nesta categoria.</p>';
         return;
     }
 
-    noticias.forEach(noticia => {
-        const card = document.createElement("article");
-
+    data.forEach(noticia => {
+        const card = document.createElement('div');
+        card.classList.add('news-card');
         card.innerHTML = `
-            <img src="${noticia.imagem || 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800'}" class="noticia-img" onerror="this.src='https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800'">
+            <img src="${noticia.imagem || 'https://via.placeholder.com/300'}" alt="${noticia.titulo}">
             <h3>${noticia.titulo}</h3>
-            ${noticia.subtitulo ? `<h4>${noticia.subtitulo}</h4>` : ''}
-            <p>${noticia.texto}</p>
+            <p>${noticia.subtitulo || ''}</p>
+            <a href="article.html?titulo=${encodeURIComponent(noticia.titulo)}&subtitulo=${encodeURIComponent(noticia.subtitulo || '')}&texto=${encodeURIComponent(noticia.texto)}&imagem=${encodeURIComponent(noticia.imagem || '')}">Ler mais</a>
         `;
-
-        card.addEventListener("click", () => {
-            window.location.href = `article.html?titulo=${encodeURIComponent(noticia.titulo)}&subtitulo=${encodeURIComponent(noticia.subtitulo || '')}&texto=${encodeURIComponent(noticia.texto)}&imagem=${encodeURIComponent(noticia.imagem || '')}`;
-        });
-
         newsGrid.appendChild(card);
     });
 }
-
-// CARREGAR INICIAL
-carregarNoticias("ultimas");
