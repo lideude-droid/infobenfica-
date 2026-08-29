@@ -94,6 +94,11 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
 });
 
 document.getElementById('btnCriar').addEventListener('click', () => abrirFormulario());
+document.getElementById('cancelCriarTop')?.addEventListener('click', () => {
+    noticiaEmEdicao = null;
+    mostrar(dashboardArea);
+});
+
 document.getElementById('cancelCriar').addEventListener('click', () => {
     noticiaEmEdicao = null;
     mostrar(dashboardArea);
@@ -228,7 +233,7 @@ criarForm.addEventListener('submit', async (event) => {
 });
 
 async function carregarNoticias() {
-    listaNoticias.innerHTML = '<p>A carregar...</p>';
+    listaNoticias.innerHTML = '<p class="admin-loading">A carregar publicações…</p>';
 
     const { data, error } = await supabase
         .from('noticias')
@@ -242,9 +247,11 @@ async function carregarNoticias() {
     }
 
     listaNoticias.replaceChildren();
+    const contador = document.getElementById('contadorNoticias');
+    if (contador) contador.textContent = `${data?.length || 0} ${data?.length === 1 ? 'publicação' : 'publicações'}`;
 
     if (!data?.length) {
-        listaNoticias.innerHTML = '<p>Ainda não existem notícias.</p>';
+        listaNoticias.innerHTML = '<div class="admin-empty"><strong>Ainda não existem notícias.</strong><span>Cria a primeira publicação para começar.</span></div>';
         return;
     }
 

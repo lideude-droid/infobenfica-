@@ -7,13 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <a class="logo" href="index.html">Infobenfica</a>
+<header class="site-header">
+    <div class="topline">
+        <div class="site-shell topline-inner">
+            <span>Notícias do Benfica</span>
+            <span>Infobenfica</span>
+        </div>
+    </div>
+    <div class="masthead site-shell">
+        <a class="brand" href="index.html" aria-label="Infobenfica - início">
+            <span class="brand-mark">I</span>
+            <span>infobenfica</span>
+        </a>
+        <a class="back-link" href="index.html">← Voltar às notícias</a>
+    </div>
+    <div class="nav-rule"></div>
 </header>
 
-<main class="artigo-container" id="articleContainer">
-    <p>A carregar notícia...</p>
+<main class="article-page site-shell">
+    <div class="article-container" id="articleContainer">
+        <p class="loading">A carregar notícia…</p>
+    </div>
 </main>
+
+<footer class="site-footer">
+    <div class="site-shell footer-inner">
+        <a class="footer-brand" href="index.html">infobenfica</a>
+        <p>Notícias, análise e informação sobre o Benfica.</p>
+        <p class="copyright">© 2026 Infobenfica</p>
+    </div>
+</footer>
 
 <script type="module" src="article.js"></script>
 </body>

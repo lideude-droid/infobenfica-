@@ -3,67 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Infobenfica</title>
+    <title>Administração — Infobenfica</title>
     <link rel="stylesheet" href="admin.css">
 </head>
-<body>
-<main class="admin-container">
-    <section id="loginArea">
-        <h1>Login Admin</h1>
-        <form id="loginForm">
-            <label for="email">Email</label>
-            <input id="email" type="email" autocomplete="username" required>
+<body class="admin-body">
+<main class="admin-shell">
+    <section id="loginArea" class="login-screen">
+        <div class="login-brand">
+            <span class="brand-mark">I</span>
+            <span>infobenfica</span>
+        </div>
+        <div class="login-card">
+            <div class="login-kicker">Área reservada</div>
+            <h1>Administração</h1>
+            <p class="login-intro">Entra para gerir as notícias do site.</p>
 
-            <label for="pass">Password</label>
-            <input id="pass" type="password" autocomplete="current-password" required>
+            <form id="loginForm">
+                <label for="email">Email</label>
+                <input id="email" type="email" autocomplete="username" placeholder="admin@exemplo.pt" required>
 
-            <button type="submit">Entrar</button>
-        </form>
-        <p id="loginError" class="error" aria-live="polite"></p>
+                <label for="pass">Password</label>
+                <input id="pass" type="password" autocomplete="current-password" placeholder="••••••••" required>
+
+                <button class="primary-button full" type="submit">Entrar</button>
+            </form>
+            <p id="loginError" class="error" aria-live="polite"></p>
+        </div>
+        <p class="login-footer">Infobenfica · Gestão editorial</p>
     </section>
 
     <section id="dashboardArea" class="hidden">
-        <div class="dashboard-header">
-            <h1>Dashboard</h1>
-            <button id="logoutBtn" type="button">Sair</button>
+        <header class="admin-header">
+            <div class="admin-brand">
+                <a href="index.html" class="admin-logo"><span class="brand-mark">I</span>infobenfica</a>
+                <span class="admin-label">Administração</span>
+            </div>
+            <div class="admin-user">
+                <span>Área reservada</span>
+                <button id="logoutBtn" class="ghost-button" type="button">Sair</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="dashboard-title">
+                <div>
+                    <span class="admin-kicker">REDAÇÃO</span>
+                    <h1>Notícias</h1>
+                    <p>Cria, edita e remove publicações.</p>
+                </div>
+                <button id="btnCriar" class="primary-button" type="button">+ Nova notícia</button>
+            </div>
+
+            <div class="list-toolbar">
+                <span id="contadorNoticias">Publicações</span>
+            </div>
+            <div id="listaNoticias" class="news-admin-list"></div>
         </div>
-        <button id="btnCriar" type="button">Criar Notícia</button>
-        <div id="listaNoticias"></div>
     </section>
 
     <section id="criarArea" class="hidden">
-        <h1 id="formTitulo">Criar Notícia</h1>
-        <form id="criarForm">
-            <label for="tituloCriar">Título</label>
-            <input id="tituloCriar" maxlength="200" required>
-
-            <label for="subtituloCriar">Subtítulo</label>
-            <input id="subtituloCriar" maxlength="300">
-
-            <label for="categoriaCriar">Categoria</label>
-            <select id="categoriaCriar" required>
-                <option value="futebol">Futebol</option>
-                <option value="modalidades">Modalidades</option>
-                <option value="clube">Clube</option>
-                <option value="opiniao">Opinião</option>
-            </select>
-
-            <label for="textoCriar">Texto</label>
-            <textarea id="textoCriar" rows="12" required></textarea>
-
-            <label for="imagemCriar">Imagem</label>
-            <input id="imagemCriar" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
-            <p id="imagemAtual" class="imagem-atual"></p>
-            <button type="button" id="removerImagem" class="hidden secondary">Remover imagem atual</button>
-
-            <div class="form-actions">
-                <button type="submit">Guardar</button>
-                <button type="button" id="cancelCriar">Cancelar</button>
+        <header class="admin-header">
+            <div class="admin-brand">
+                <a href="index.html" class="admin-logo"><span class="brand-mark">I</span>infobenfica</a>
+                <span class="admin-label">Editor</span>
             </div>
-            <p id="formError" class="error" aria-live="polite"></p>
-        </form>
+            <button id="cancelCriarTop" class="ghost-button" type="button">Cancelar</button>
+        </header>
+
+        <div class="editor-content">
+            <div class="editor-heading">
+                <span class="admin-kicker">REDAÇÃO</span>
+                <h1 id="formTitulo">Nova notícia</h1>
+                <p>Preenche os dados da publicação e adiciona uma imagem, se necessário.</p>
+            </div>
+
+            <form id="criarForm" class="editor-form">
+                <div class="form-main">
+                    <label for="tituloCriar">Título</label>
+                    <input id="tituloCriar" maxlength="200" placeholder="Título da notícia" required>
+
+                    <label for="subtituloCriar">Subtítulo</label>
+                    <input id="subtituloCriar" maxlength="300" placeholder="Resumo ou linha de apoio">
+
+                    <label for="textoCriar">Texto</label>
+                    <textarea id="textoCriar" rows="16" placeholder="Escreve o conteúdo da notícia…" required></textarea>
+                </div>
+
+                <aside class="form-sidebar">
+                    <div class="field-group">
+                        <label for="categoriaCriar">Categoria</label>
+                        <select id="categoriaCriar" required>
+                            <option value="futebol">Futebol</option>
+                            <option value="modalidades">Modalidades</option>
+                            <option value="clube">Clube</option>
+                            <option value="opiniao">Opinião</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="imagemCriar">Imagem</label>
+                        <label class="upload-box" for="imagemCriar">
+                            <span class="upload-icon">↑</span>
+                            <strong>Escolher imagem</strong>
+                            <small>JPG, PNG, WEBP ou GIF · máx. 8 MB</small>
+                        </label>
+                        <input id="imagemCriar" class="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+                        <p id="imagemAtual" class="imagem-atual"></p>
+                        <button type="button" id="removerImagem" class="link-button hidden">Remover imagem atual</button>
+                    </div>
+
+                    <div class="editor-actions">
+                        <button class="primary-button full" type="submit">Guardar notícia</button>
+                        <button class="secondary-button full" type="button" id="cancelCriar">Cancelar</button>
+                    </div>
+                    <p id="formError" class="error" aria-live="polite"></p>
+                </aside>
+            </form>
+        </div>
     </section>
 </main>
+
 <script type="module" src="admin.js"></script>
 </body>
 </html>
