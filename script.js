@@ -39,10 +39,6 @@ function criarCard(noticia) {
         card.appendChild(h3);
     }
 
-    const p = document.createElement('p');
-    p.textContent = noticia.texto || '';
-    card.appendChild(p);
-
     const abrir = () => {
         if (noticia.id != null) {
             window.location.href = `article.html?id=${encodeURIComponent(noticia.id)}`;
