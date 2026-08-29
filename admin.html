@@ -51,8 +51,10 @@
             <label for="textoCriar">Texto</label>
             <textarea id="textoCriar" rows="12" required></textarea>
 
-            <label for="imagemCriar">Imagem (URL)</label>
-            <input id="imagemCriar" type="url" placeholder="https://...">
+            <label for="imagemCriar">Imagem</label>
+            <input id="imagemCriar" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+            <p id="imagemAtual" class="imagem-atual"></p>
+            <button type="button" id="removerImagem" class="hidden secondary">Remover imagem atual</button>
 
             <div class="form-actions">
                 <button type="submit">Guardar</button>

@@ -66,3 +66,9 @@ button:hover { background: #c10510; }
     .admin-container { width: 95%; padding: 25px; margin: 20px auto; }
     .dashboard-header { align-items: flex-start; }
 }
+.noticia-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.card-actions button { margin-top: 0; }
+.card-actions .danger { background: #8b0000; }
+.secondary { background: #666; }
+.imagem-atual { color: #666; font-size: 13px; overflow-wrap: anywhere; }
